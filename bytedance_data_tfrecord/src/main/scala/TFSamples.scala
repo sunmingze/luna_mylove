@@ -128,6 +128,10 @@ object TFSamples {
   def main(args: Array[String]): Unit = {
     val conf = new SparkConf().setAppName("DnnRecalFeatureExtractsPipeline").set("spark.executor.extraJavaOptions", "-Djava.util.Arrays.useLegacyMergeSort=true");
     val sc = new SparkContext(conf)
+    val input_path = "/user/s_feeds/sunmingze/deep_learning/dnn_gsf_ffm_sample/trunk1_output"
+    val output_path = "/user/s_feeds/sunmingze/deep_learning/dnn_gsf_ffm_sample/tf_output"
+    val featureGroupMap = initFeatureGroupIds(sc,input_path)
+    parseSampleTFRecord(sc,input_path,output_path,featureGroupMap)
 
   }
 
