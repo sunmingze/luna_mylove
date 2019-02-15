@@ -4,7 +4,7 @@ path=`dirname $0`
 
 master="yarn-cluster"
 num_executor=100
-queue="root.production.cloud_group.feeds"
+queue="root.production.cloud_group.feeds.pipeline"
 cluster="zjyprc-hadoop"
 
 export INFRA_CLIENT_HOME="/home/work/tools/infra-client/bin"
