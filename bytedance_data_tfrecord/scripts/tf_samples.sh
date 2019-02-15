@@ -7,10 +7,10 @@ num_executor=100
 queue="root.production.cloud_group.feeds"
 cluster="zjyprc-hadoop"
 
-export INFRA_CLIENT_HOME="/home/work/inf/infra-client"
+export INFRA_CLIENT_HOME="/home/work/tools/infra-client/bin"
 class="TFSamples"
 
-${INFRA_CLIENT_HOME}/bin/spark-submit \
+${INFRA_CLIENT_HOME}/spark-submit \
     --cluster "$cluster" \
     --class "$class" \
     --master "$master" \
