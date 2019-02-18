@@ -3,7 +3,7 @@
 path=`dirname $0`
 
 master="yarn-cluster"
-num_executor=100
+num_executor=80
 queue="root.production.cloud_group.feeds.pipeline"
 cluster="zjyprc-hadoop"
 
