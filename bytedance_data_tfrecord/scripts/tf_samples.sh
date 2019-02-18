@@ -9,6 +9,11 @@ cluster="zjyprc-hadoop"
 
 export INFRA_CLIENT_HOME="/home/work/tools/infra-client/bin"
 class="TFSamples"
+HDFS="/home/work/tools/infra-client/bin/hdfs --cluster zjyprc-hadoop dfs"
+
+$HDFS -rmr "/user/s_feeds/sunmingze/deep_learning/dnn_gsf_ffm_sample/tf_output"
+
+
 
 ${INFRA_CLIENT_HOME}/spark-submit \
     --cluster "$cluster" \

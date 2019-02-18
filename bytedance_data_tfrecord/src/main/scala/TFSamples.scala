@@ -18,8 +18,10 @@ object TFSamples {
 
   def setFeatureFloat(input: Array[Double]) = {
     val builder = FloatList.newBuilder()
-    if (input.size == 0)
-      builder.addValue(1.0.toFloat)
+    if (input.size == 0) {
+      for( i <- 0 until 128 )
+        builder.addValue(0.0.toFloat)
+    }
     else {
       input.map { v =>
         builder.addValue(v.toFloat)
@@ -34,7 +36,7 @@ object TFSamples {
       builder.addValue(0)
     else {
       input.map { v =>
-        val value: Long = map.getOrElse(v, 0)
+        val value: Long = map.getOrElse(v, 0L)
         builder.addValue(value)
       }
     }
@@ -53,8 +55,6 @@ object TFSamples {
       end.append(("author_id", parts(3)))
       end.append(("item_city", parts(4)))
       end.append(("channel", parts(5)))
-      end.append(("finish", parts(6)))
-      end.append(("like", parts(7)))
       end.append(("music_id", parts(8)))
       end.append(("device", parts(9)))
       end.append(("duration_time", parts(11)))
@@ -70,6 +70,9 @@ object TFSamples {
       for (key <- parts(14).split(",")) {
         end.append(("beauty", key))
       }
+
+
+
       end
     }
     }.map(x => (x._1, Set(x._2))).reduceByKey(_ ++ _).repartition(20).map {
@@ -101,7 +104,7 @@ object TFSamples {
       featuresList += ("gender" -> setFeatureId(parts(13).split(","), featureId("gender")))
       featuresList += ("beauty" -> setFeatureId(parts(14).split(","), featureId("beauty")))
       // dense feature
-      valueList += ("video_embedding" -> setFeatureFloat(parts(15).split(",").map(line => line.toDouble)))
+      valueList += ("video_embedding" -> setFeatureFloat(parts(15).split(",").map(line => line.toFloat)))
 
       val featureTF = Features.newBuilder()
       featuresList.map { fea =>
