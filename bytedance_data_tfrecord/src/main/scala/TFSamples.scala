@@ -16,7 +16,7 @@ import scala.collection.mutable.ArrayBuffer
 
 object TFSamples {
 
-  def setFeatureFloat(input: Array[Double]) = {
+  def setFeatureFloat(input: Array[Float]) = {
     val builder = FloatList.newBuilder()
     if (input.size == 0) {
       for( i <- 0 until 128 )
